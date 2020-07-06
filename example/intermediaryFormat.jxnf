@@ -1,0 +1,71 @@
+[
+  {
+  "label" : "network name",
+  "directed": false,
+  "node-count":5,
+  "network-properties":{
+    "average-degree": 4,
+    "average-clustering": 0.5,
+    "subject": "S10",
+    "type": "correlation"
+  },
+  "edges":[
+    [0,1],
+    [0,2],
+    [0,3],
+    [3,4]
+  ],
+  "node-properties":{
+    "label":[
+      "node label(0)",
+      "node label(1)",
+      "node label(2)",
+      "node label(3)",
+      "node label(4)"
+    ],
+    "position":[
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3]
+    ],
+    "color":[
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3]
+    ],
+    "community":[
+      "com1",
+      "com3",
+      "com2",
+      "com1",
+      "com1"
+    ],
+    "degree":[
+      2,
+      3,
+      2,
+      3,
+      3
+    ],
+    "size":[
+      4,
+      4,
+      1,
+      2,
+      2
+    ],
+    "special":{
+      "0":"CEO",
+      "3":"Developer"
+    }
+  },
+  "edge-properties":{
+    "weight" : [0.1,0.2,0.3,0.4],
+    "edgeCentrality" : [10,20,30,40]
+  }
+}
+]

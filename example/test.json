@@ -1,0 +1,140 @@
+{
+  "graph": {
+    "label": "network name",
+    "directed": false,
+    "type": "correlation",
+    "metadata": {
+      "average-degree": 4,
+      "average-clustering": 0.5,
+      "subject": "S10"
+    },
+    "nodes": {
+      "0": {
+        "label": "node label(0)",
+        "metadata": {
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "color": [
+            1,
+            2,
+            3
+          ],
+          "community": "com1",
+          "degree": 2,
+          "size": 4,
+          "special": "CEO"
+        }
+      },
+      "1": {
+        "label": "node label(1)",
+        "metadata": {
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "color": [
+            1,
+            2,
+            3
+          ],
+          "community": "com3",
+          "degree": 3,
+          "size": 4
+        }
+      },
+      "2": {
+        "label": "node label(2)",
+        "metadata": {
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "color": [
+            1,
+            2,
+            3
+          ],
+          "community": "com2",
+          "degree": 2,
+          "size": 1
+        }
+      },
+      "3": {
+        "label": "node label(3)",
+        "metadata": {
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "color": [
+            1,
+            2,
+            3
+          ],
+          "community": "com1",
+          "degree": 3,
+          "size": 2,
+          "special": "Developer"
+        }
+      },
+      "4": {
+        "label": "node label(4)",
+        "metadata": {
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "color": [
+            1,
+            2,
+            3
+          ],
+          "community": "com1",
+          "degree": 3,
+          "size": 2
+        }
+      }
+    },
+    "edges": [
+      {
+        "source": "0",
+        "target": "1",
+        "metadata": {
+          "weight": 0.1,
+          "edgeCentrality": 10
+        }
+      },
+      {
+        "source": "0",
+        "target": "2",
+        "metadata": {
+          "weight": 0.2,
+          "edgeCentrality": 20
+        }
+      },
+      {
+        "source": "0",
+        "target": "3",
+        "metadata": {
+          "weight": 0.3,
+          "edgeCentrality": 30
+        }
+      },
+      {
+        "source": "3",
+        "target": "4",
+        "metadata": {
+          "weight": 0.4,
+          "edgeCentrality": 40
+        }
+      }
+    ]
+  }
+}
