@@ -3,7 +3,6 @@ import jgf
 from collections import OrderedDict
 
 def load(filename='',compressed=None):
-	import igraph as ig
 	"""
 	Loads a JGF(Z) – Json Graph Format (gZipped) – file and converts it
 	to an igraph.Graph object.
@@ -23,6 +22,7 @@ def load(filename='',compressed=None):
 			List of igraph network objects.
 	"""
 
+	import igraph as ig
 	inputGraphs = jgf.load(filename,compressed=compressed)
 	graphs = []
 	for inputGraph in inputGraphs:
@@ -76,7 +76,6 @@ def load(filename='',compressed=None):
 
 
 def save(graphs, filename='',compressed=None):
-	import igraph as ig
 	"""
 	Writes a list igraph.Graph networks to a JGF(Z) – Json Graph Format (gZipped) – file.
 	
@@ -92,6 +91,7 @@ def save(graphs, filename='',compressed=None):
 			Use '.jgfz' for compressed files.
 	"""
 
+	import igraph as ig
 	exportGraphs = []
 	if(not isinstance(graphs,list)):
 		graphs = [graphs]

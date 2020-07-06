@@ -243,7 +243,7 @@ def load(filename='',compressed=None):
 			Use '.jgfz' for compressed files.
 
 	Returns
-	----------
+	-------
 	out : List of OrderedDict
 			Data readed from the JGF(Z) file formatted as a list of JXNF
 			dictionaries.
@@ -339,6 +339,4 @@ def save(graphs,filename="",compressed=None):
 	json.dump(exportJSON,filehandler)
 	if(shallCleanupHandler):
 		filehandler.close()
-
-
 
