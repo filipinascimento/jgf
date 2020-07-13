@@ -14,8 +14,8 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 	
 	Parameters
 	----------
-	filename : str or file handle
-			Path to the file or a file handle to be used as input.
+	filename : str or file handler
+			Path to the file or a file handler to be used as input.
 	compressed : bool
 			If true, the input file will be interpreted as being compressed.
 			If not provided, this will be guessed from the file extension.
@@ -25,7 +25,10 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 		matrix. By default, attribute `weight` is used. If this attribute is
 		`None` or not present in the network, the generated matrix will be binary.
 	getExtraData: bool
-		If true, this function returns not only the graph but a dictionaries of properties as well
+		If true, this function returns not only the graph but a dictionaries of
+		properties as well.
+	noneNumericValue: obj
+		Value to be used as placeholder for invalid or none values in edge properties.
 	Returns
 	----------
 	out : list of np.array of dim=2
@@ -73,6 +76,7 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 			if("label" in inputGraph):
 				extraData["label"] = inputGraph["label"]
 			
+			extraData["directed"] = directed
 			if("network-properties" in inputGraph):
 				extraData["network-properties"] = dict()
 				for key,value in inputGraph["network-properties"].items():
@@ -95,6 +99,8 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 			if("edge-properties" in inputGraph):
 				extraData["edge-properties"] = dict()
 				for key,values in inputGraph["edge-properties"].items():
+					if(key==weight):
+						continue
 					edgeData = [[None]*nodeCount for _ in range(nodeCount)]
 					isNumeric = True;
 					if(isinstance(values, dict)):
@@ -128,22 +134,41 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 			return graphs 
 
 
+
 def save(matrices, filename='', weight="weight", compressed=None, mantainAllEdges=False,
 	label=None, directed=None,networkProperties=None, nodeProperties=None,
 	edgeProperties=None):
 	"""
-	Writes a list igraph.Graph networks to a JGF(Z) – Json Graph Format (gZipped) – file.
+	Writes a list matrices as networks to a JGF(Z) – Json Graph Format (gZipped) – file.
 	
 	Parameters
 	----------
-	graphs : list of igraph.Graph objects or a single Graph object
-			Graphs to be saved.
-	filename : str or file handle
-			Path to the file or a file handle to be used as output.
+	graphs : list of numpy matrices or a single connectivity matrix object
+			Connectivity matrix to be saved.
+	filename : str or file handler
+			Path to the file or a file handler to be used as output.
 	compressed : bool
 			If true, the input file will be interpreted as being compressed.
 			If not provided, this will be guessed from the file extension.
 			Use '.jgfz' for compressed files.
+	mantainAllEdges : bool
+	label : list or str
+		Labels used for the networks in order. If a single value is provided, it will be
+		replicated to all networks.
+	directed : list or bool
+		Set if the networks are directed or not. If a single value is provided, it will be
+		replicated to all networks.
+	networkProperties : list or dict
+		Dictionary containing the network properties. If a single dictionary is provided, it
+		will be replicated to all the networks.
+	nodeProperties : list or dict
+		Dictionary containing the node properties. If a single dictionary is provided, it
+		will be replicated to all the networks. Each entry in the dictionaries must be arrays
+		of properties indexed according to the order of columns/rows in the matrix.
+	edgeProperties : list or bool
+		Dictionary containing the edge properties. If a single dictionary is provided, it will be
+		replicated to all the networks. Each entry must contain a matrix of values assigned to
+		each edge (nodes pair).
 	"""
 	exportGraphs = []
 	if(not isinstance(matrices,list)):
@@ -188,8 +213,6 @@ def save(matrices, filename='', weight="weight", compressed=None, mantainAllEdge
 
 		edgeIndices = tuple(zip(*edges));
 		
-		if(weight is not None):
-			weights = adjacencyMatrix[edgeIndices]
 		
 
 		if(label is not None and len(label)>matrixIndex):
@@ -208,19 +231,21 @@ def save(matrices, filename='', weight="weight", compressed=None, mantainAllEdge
 
 		if(nodeProperties is not None and len(nodeProperties)>matrixIndex):
 			if(len(nodeProperties[matrixIndex])>0):
-				exportGraph["node-properties"] = nodeProperties[matrixIndex]
+				exportGraph["node-properties"] = OrderedDict(nodeProperties[matrixIndex])
 		
 		if(edgeProperties is not None and len(edgeProperties)>matrixIndex):
 			exportEdgeProperties = OrderedDict()
 			for key,values in edgeProperties[matrixIndex].items():
 				valuesArray = np.array(values)
 				if(valuesArray.shape[0] == nodeCount and valuesArray.shape[1] == nodeCount):
-					propertyData = adjacencyMatrix[edgeIndices]
+					propertyData = valuesArray[edgeIndices]
 					exportEdgeProperties[key] = propertyData
-				exportGraph["edge-properties"] = exportEdgeProperties
-
+				exportGraph["edge-properties"] = OrderedDict(exportEdgeProperties)
+		
+		if(weight is not None):
+			weights = adjacencyMatrix[edgeIndices]
+			if("edge-properties" not in exportGraph):
+				exportGraph["edge-properties"] = OrderedDict()
+			exportGraph["edge-properties"][weight] = weights
 		exportGraphs.append(exportGraph)
 	jgf.save(exportGraphs,filename,compressed)
-
-
-
