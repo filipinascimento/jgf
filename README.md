@@ -2,6 +2,8 @@
 # JGF(Z) format implementation
 This package implements export and import functions for the JSON Graph Format (gZipped) `JGF(Z)` (https://jsongraphformat.info). Supported input formats/libraries are `networkx`, `igraph`, `numpy` matrices and `JXNF` files. All network, node and edges attributes are saved as well.
 
+This project is being developed to support the new network datatype for (brainlife.io).
+
 ### Authors
 - [Filipi N. Silva](filsilva@iu.edu)
 

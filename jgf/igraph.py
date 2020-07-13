@@ -32,7 +32,7 @@ def load(filename='',compressed=None):
 
 		directed = False
 		if("directed" in inputGraph):
-			inputGraph["directed"] = directed
+			directed = inputGraph["directed"]
 
 		edges = []
 		edgeCount = 0
