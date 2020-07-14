@@ -97,7 +97,7 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 						extraData["node-properties"][key] = values
 			
 			if("edge-properties" in inputGraph):
-				extraData["edge-properties"] = dict()
+				edgeProperties = dict()
 				for key,values in inputGraph["edge-properties"].items():
 					if(key==weight):
 						continue
@@ -125,7 +125,9 @@ def load(filename='',compressed=None, weight="weight", getExtraData=False, noneN
 									break
 					if(isNumeric):
 						edgeData = [[noneNumericValue if value is None else value for value in edgeRow] for edgeRow in edgeData]
-					extraData["edge-properties"][key] = edgeData
+					edgeProperties[key] = edgeData
+				if(len(edgeProperties)>0):
+					extraData["edge-properties"] = edgeProperties
 			extraDataList.append(extraData)
 		graphs.append(matrix)
 		if(getExtraData):

@@ -50,4 +50,32 @@ jig.save(g,"zachary.jgfz")
 g, = jig.load("zachary.jgfz")
 ```
 
+You can also use it to save and load connectivity matrices as square numpy matrices:
+
+```python
+import numpy as np
+import jgf.conmat as jcm
+
+A = np.array([
+  [  0, 0.1, 0.2,   0,   0],
+  [  0,   0,   0, 0.5,   0],
+  [  0,   0,   0,   0, 1.0],
+  [1.0, 1.0,   0,   0,   0],
+  [  0,   0, 0.5,   0,   0],
+  ])
+
+nodeProperties = {
+  "name" : [
+    "Node 1",
+    "Node 2",
+    "Node 3",
+    "Node 4",
+    "Node 5",
+  ]
+}
+# will save a compressed file
+jcm.save(A,"example.jgfz",label= "Example", nodeProperties=nodeProperties)
+
+B,properties = jcm.load("example.jgfz",getExtraData=True)
+```
 

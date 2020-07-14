@@ -7,13 +7,19 @@ API Documentation
 JGF basic export or import
 --------------------
 
-.. automodule:: jgf
+.. automodule:: jgf.core
    :members:
 
 igraph
 ------
 
 .. automodule:: jgf.igraph
+   :members:
+
+numpy array
+------
+
+.. automodule:: jgf.conmat
    :members:
 
 
