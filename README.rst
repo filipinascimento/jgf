@@ -4,6 +4,8 @@ JGF(Z) format implementation
 
 This package implements export and import functions for the JSON Graph Format (gZipped) ``JGF(Z)`` (https://jsongraphformat.info). Supported input formats/libraries are ``networkx``\ , ``igraph``\ , ``numpy`` matrices and ``JXNF`` files. All network, node and edges attributes are saved as well.
 
+This project is being developed to support the new network datatype for (brainlife.io).
+
 Authors
 ^^^^^^^
 
@@ -18,13 +20,13 @@ Authors
 
 
 
-
-.. raw:: html
-
-   <!-- ### Funding  -->
-   <!-- [![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1734853) -->
+Funding
+^^^^^^^
 
 
+.. image:: https://img.shields.io/badge/NIH-1R01EB029272_01-blue.svg
+   :target: https://www.nibib.nih.gov/node/113361
+   :alt: NIH-1R01EB029272-01
 
 
 
@@ -53,6 +55,11 @@ or install it from this git repository:
    cd <repository PATH>
    pip install -e ./
 
+API Reference
+-------------
+
+API reference can be found in (https://jgf.readthedocs.io/).
+
 Example of use
 --------------
 
@@ -69,3 +76,32 @@ To use the library in igraph environment simply import the correct module and ru
    jig.save(g,"zachary.jgfz")
 
    g, = jig.load("zachary.jgfz")
+
+You can also use it to save and load connectivity matrices as square numpy matrices:
+
+.. code-block:: python
+
+   import numpy as np
+   import jgf.conmat as jcm
+
+   A = np.array([
+     [  0, 0.1, 0.2,   0,   0],
+     [  0,   0,   0, 0.5,   0],
+     [  0,   0,   0,   0, 1.0],
+     [1.0, 1.0,   0,   0,   0],
+     [  0,   0, 0.5,   0,   0],
+     ])
+
+   nodeProperties = {
+     "name" : [
+       "Node 1",
+       "Node 2",
+       "Node 3",
+       "Node 4",
+       "Node 5",
+     ]
+   }
+   # will save a compressed file
+   jcm.save(A,"example.jgfz",label= "Example", nodeProperties=nodeProperties)
+
+   B,properties = jcm.load("example.jgfz",getExtraData=True)

@@ -34,6 +34,10 @@ cd <repository PATH>
 pip install -e ./
 ```
 
+## API Reference
+
+API reference can be found in (https://jgf.readthedocs.io/).
+
 ## Example of use
 
 To use the library in igraph environment simply import the correct module and run `save` or `load` functions:
