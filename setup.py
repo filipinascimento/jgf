@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="jgf",
-    version="0.2.1",
+    version="0.2.2",
     author="Filipi N. Silva",
     author_email="filipi@iu.edu",
     description="Python library to load JGF files",
