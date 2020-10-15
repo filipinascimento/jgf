@@ -4,19 +4,18 @@ This package implements export and import functions for the JSON Graph Format (g
 
 This project is being developed to support the new network datatype for (brainlife.io).
 
-### Authors
-- [Filipi N. Silva](filsilva@iu.edu)
 
-<!-- ### Contributors
-- Franco Pestilli (franpest@indiana.edu) -->
+### Authors
+- [Filipi N. Silva](https://filipinascimento.github.io)
+
+### Contributors
+- [Franco Pestilli](https://liberalarts.utexas.edu/psychology/faculty/fp4834)
+
 
 ### Funding
-[![NIH-1R01EB029272-01](https://img.shields.io/badge/NIH-1R01EB029272_01-blue.svg)](https://www.nibib.nih.gov/node/113361)
+We kindly ask that you acknowledge the funding below in your publications and code reusing this code.
 
-
-<!-- ### Citations
-
-1. Adai, Alex T., Shailesh V. Date, Shannon Wieland, and Edward M. Marcotte. "LGL: creating a map of protein function with an algorithm for visualizing very large biological networks." Journal of molecular biology 340, no. 1 (2004): 179-190. [https://doi.org/10.1016/j.jmb.2004.04.047](https://doi.org/10.1016/j.jmb.2004.04.047) -->
+[![NIH-NIBIB-R01EB029272](https://img.shields.io/badge/NIH_NIBIB-R01EB029272-green.svg)](https://grantome.com/grant/NIH/R01-EB029272-01)
 
 ## Installation 
 
